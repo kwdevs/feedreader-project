@@ -68,7 +68,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
          it('is hidden by default', function() {
-            // get the body element
+            // get the body element class list
             var bodyClassList = $('body').attr('class');
             // test that the body tag has the class .menu-hidden
             expect(bodyClassList).toContain('menu-hidden');
@@ -78,6 +78,9 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+         it('changes visibility when clicked', function() {
+
+         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
 
