@@ -31,12 +31,31 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+        it('have a url and are not empty', function() {
+            // Use for each to check each url in allFeeds array of
+            // objects
+            allFeeds.forEach(function(obj) {
+                // now check that the url is present
+                expect(obj.url).toBeDefined();
+                // check that the url is not empty
+                expect(obj.url.length).toBeGreaterThan(0);
+            });
+        });
 
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it('have a name and are not empty', function() {
+            allFeeds.forEach(function(obj) {
+                // test that the name key of the allFeeds array
+                // of objs is defined
+                expect(obj.name).toBeDefined();
+                // test that name is not an empty string
+                expect(obj.name.length).toBeGreaterThan(0);
+            });
+        });
     });
 
 
