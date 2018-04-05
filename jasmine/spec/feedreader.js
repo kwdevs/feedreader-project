@@ -32,11 +32,11 @@ $(function() {
         it('should have a URL and should not be empty', function() {
             // Use for each to check each url in allFeeds array of
             // objects
-            allFeeds.forEach(function(obj) {
+            allFeeds.forEach(function(feed) {
                 // now check that the url is present
-                expect(obj.url).toBeDefined();
-                // check that the url is not empty
-                expect(obj.url.length).toBeGreaterThan(0);
+                expect(feed.url).toBeDefined();
+                // by checking that the url is truthy we guarantee that a value is present since an emply string is falsy
+                expect(feed.url).toBeTruthy();
             });
         });
         /* TODO: Write a test that loops through each feed
@@ -44,34 +44,25 @@ $(function() {
          * and that the name is not empty.
          */
         it('should have a name and should not be empty', function() {
-            allFeeds.forEach(function(obj) {
+            allFeeds.forEach(function(feed) {
                 // test that the name key of the allFeeds array
                 // of objs is defined
-                expect(obj.name).toBeDefined();
-                // test that name is not an empty string
-                expect(obj.name.length).toBeGreaterThan(0);
+                expect(feed.name).toBeDefined();
+                // by checking that the url is truthy we guarantee that a value is present since an emply string is falsy
+                expect(feed.name).toBeTruthy();
             });
         });
     });
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
-        var bodyClassList,
-            menuIcon,
-            numberOfClicks;
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-        beforeEach(function() {
-            bodyClassList = $('body').attr('class');
-            menuIcon = $('.menu-icon-link');
-            numberOfClicks = 0;
-        });
-
         it('should be hidden by default', function() {
             // test that the body tag has the class .menu-hidden
-            expect(bodyClassList).toContain('menu-hidden');
+            expect($('body').attr('class')).toContain('menu-hidden');
         });
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
@@ -79,18 +70,15 @@ $(function() {
          * clicked and does it hide when clicked again.
          */
         it('should change visibility when clicked', function() {
-            // click the menu-icon-link
+            var menuIcon = $('.menu-icon-link');
+            // click the menu
             menuIcon.click();
-            // get the class list after click
-            bodyClassList = $('body').attr('class');
-            // return true if menu-hidden has been removed
-            expect(bodyClassList).not.toContain('menu-hidden');
-            // click the menu-icon-link again
+            // does the menu display when clicked
+            expect($('body').is('menu-hidden')).toBeFalsy();
+            // click the menu
             menuIcon.click();
-            // update the class list again
-            bodyClassList = $('body').attr('class');
-            // return true if menu-hidden was added back to class list.
-            expect(bodyClassList).toContain('menu-hidden');
+            // does it hide when clicked again
+            expect($('body').attr('class')).toContain('menu-hidden');
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -104,9 +92,9 @@ $(function() {
         // Before running the test(s) make sure the api call is complete
         beforeEach(function(done) {
                 // execute the function from app.js
-                spyOn(window, 'loadFeed').and.callThrough();
+                    window.loadFeed(0);
                 // use done to signal the function completed.
-                done();
+                    done();
         });
         // test for a single .entry elem in the .feed container.
         it('should have one or more .entry element(s) in .feed container', function() {
