@@ -95,9 +95,8 @@ $(function() {
 
         // test for a single .entry elem in the .feed container.
         it('should have one or more .entry element(s) in .feed container', function(done) {
-
             // jQuery string traverses dom from the feed class to the containing articles.
-            // chaining has class then returns a boolean.
+            // chaining hasClass then returns a boolean.
             var entryElements = $('.feed a article').hasClass('entry');
             // the test fails if not explicitly true
             expect(entryElements).toBe(true);
@@ -110,6 +109,15 @@ $(function() {
              * by the loadFeed function that the content actually changes.
              * Remember, loadFeed() is asynchronous.
              */
+            it('should change content when a new feed is loaded', function(done) {
+                // spyon loadFeed
+                spyOn(window, 'loadFeed');
+                // click the element to load a new feed
+                var links = $('[data-id]');
+                    links.forEach()
+                //
+
+            })
         });
     });
 }());
