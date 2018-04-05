@@ -89,16 +89,20 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        // Before running the test(s) make sure the api call is complete
-        beforeEach(function(done) {
-                // execute the function from app.js
-                    window.loadFeed(0);
-                // use done to signal the function completed.
-                    done();
-        });
-        // test for a single .entry elem in the .feed container.
-        it('should have one or more .entry element(s) in .feed container', function() {
+         beforeEach(function(done) {
+            loadFeed(0, done);
+         });
 
+        // test for a single .entry elem in the .feed container.
+        it('should have one or more .entry element(s) in .feed container', function(done) {
+
+            // jQuery string traverses dom from the feed class to the containing articles.
+            // chaining has class then returns a boolean.
+            var entryElements = $('.feed a article').hasClass('entry');
+            // the test fails if not explicitly true
+            expect(entryElements).toBe(true);
+            // call done to signal this test relies on async fn in before each
+            done();
         });
         /* TODO: Write a new test suite named "New Feed Selection" */
         describe('New Feed Selection', function() {
