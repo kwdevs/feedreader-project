@@ -109,11 +109,6 @@ $(function() {
              * by the loadFeed function that the content actually changes.
              * Remember, loadFeed() is asynchronous.
              */
-            // call the async fn loadFeed
-            // beforeEach(function(done) {
-            // execute loadFeed async fn
-            // loadFeed(0, done);
-            // });
             it('should change content when a new feed is loaded', function() {
                 // get the links that change content on page
                 var listOfFeeds = $(".feed-list li a");
