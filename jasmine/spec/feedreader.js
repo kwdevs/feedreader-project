@@ -89,9 +89,9 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         beforeEach(function(done) {
+        beforeEach(function(done) {
             loadFeed(0, done);
-         });
+        });
 
         // test for a single .entry elem in the .feed container.
         it('should have one or more .entry element(s) in .feed container', function(done) {
@@ -111,8 +111,8 @@ $(function() {
              */
             // call the async fn loadFeed
             // beforeEach(function(done) {
-                // execute loadFeed async fn
-                // loadFeed(0, done);
+            // execute loadFeed async fn
+            // loadFeed(0, done);
             // });
             it('should change content when a new feed is loaded', function() {
                 // get the links that change content on page
