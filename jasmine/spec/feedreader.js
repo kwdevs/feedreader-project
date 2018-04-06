@@ -109,15 +109,22 @@ $(function() {
              * by the loadFeed function that the content actually changes.
              * Remember, loadFeed() is asynchronous.
              */
-            it('should change content when a new feed is loaded', function(done) {
-                // spyon loadFeed
-                spyOn(window, 'loadFeed');
-                // click the element to load a new feed
-                var links = $('[data-id]');
-                    links.forEach()
-                //
-
-            })
+            // call the async fn loadFeed
+            // beforeEach(function(done) {
+                // execute loadFeed async fn
+                // loadFeed(0, done);
+            // });
+            it('should change content when a new feed is loaded', function() {
+                // get the links that change content on page
+                var listOfFeeds = $(".feed-list li a");
+                // spy on the loadFeed async fn
+                var loadFeedSpy = spyOn(window, 'loadFeed').and.callThrough();
+                // loop trough listOfFeeds clicking each link. Ensure loadFeed fn is called with the appropriate arguments.
+                for (var i = 0; i < listOfFeeds.length; ++i) {
+                    listOfFeeds[i].click()
+                    expect(loadFeedSpy).toHaveBeenCalledWith(i);
+                }
+            });
         });
     });
 }());
