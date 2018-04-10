@@ -112,7 +112,8 @@ $(function() {
             // variable to hold the HTML from .feed.
             var firstHTML;
             // before each test get the HTML of .feed
-            beforeEach(function () {
+            beforeEach(function (done) {
+                loadFeed(0, done);
                 var loadedHTML = $('.feed').html();
             });
             // test should guarantee that html is loaded and content has changed.
