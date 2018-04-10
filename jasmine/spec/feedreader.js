@@ -109,16 +109,16 @@ $(function() {
              * by the loadFeed function that the content actually changes.
              * Remember, loadFeed() is asynchronous.
              */
-            it('should change content when a new feed is loaded', function() {
-                // get the links that change content on page
-                var listOfFeeds = $(".feed-list li a");
-                // spy on the loadFeed async fn
-                var loadFeedSpy = spyOn(window, 'loadFeed').and.callThrough();
-                // loop trough listOfFeeds clicking each link. Ensure loadFeed fn is called with the appropriate arguments.
-                for (var i = 0; i < listOfFeeds.length; ++i) {
-                    listOfFeeds[i].click()
-                    expect(loadFeedSpy).toHaveBeenCalledWith(i);
-                }
+            // variable to hold the HTML from .feed.
+            var firstHTML;
+            // before each test get the HTML of .feed
+            beforeEach(function () {
+                var loadedHTML = $('.feed').html();
+            });
+            // test should guarantee that html is loaded and content has changed.
+            it('should change content', function() {
+                //loadFeeds
+                expect($('.feed').html()).not.toBe(firstHTML);
             });
         });
     });
