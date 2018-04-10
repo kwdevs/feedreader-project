@@ -122,4 +122,19 @@ $(function() {
             });
         });
     });
+    /*This is a test suite to make sure that variables are defined*/
+    describe('Variables', function() {
+        /*test that variables are defined.*/
+        it('should be defined', function() {
+            // setup an undefined variable
+
+
+        });
+    });
+    /*This is a test suite to make sure that array access is in bounds*/
+    describe('Arrays', function() {
+        it('should maintain in-bounds-access', function() {
+
+        });
+    });
 }());
